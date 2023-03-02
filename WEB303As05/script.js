@@ -6,8 +6,10 @@
 
 $("document").ready(function () {
 
+    
     class ContentItem {
-
+        
+        
         constructor(id, f_name, description, category_genre) {
             this.id = id;
             this.f_name = f_name;
@@ -15,7 +17,7 @@ $("document").ready(function () {
             this.category_genre = category_genre;
         }
 
-        updateContentItem() {
+        updateContentItem(id, f_name, description, category_genre) {
 
             if (this.id === id) {
                 if (f_name) {
@@ -59,7 +61,38 @@ $("document").ready(function () {
         'width': '80%',
         'padding': '20px',
         'margin': '50px auto'
-      });      
+      });  
+
+
+      // Button to update an existing ContentItem successfully
+    $('#update-successful').on('click', function () {
+        const itemToUpdate = array[0];
+        itemToUpdate.updateContentItem('The Dark Knight Rises', 'A 2012 superhero film directed by Christopher Nolan, based on the DC Comics character Batman.', 'Action');
+        const updatedHtml = itemToUpdate.toString();
+        $('#content-item-id0').replaceWith(updatedHtml);
+    });
+
+    // Button to update an existing ContentItem unsuccessfully
+    $('#update-unsuccessful').on('click', function () {
+        const itemToUpdate = array[1];
+        itemToUpdate.updateContentItem(null, null, null); // Passing null to all arguments to trigger the error
+        const updatedHtml = itemToUpdate.toString();
+        $('#content-item-id1').replaceWith(updatedHtml);
+    });
+
+    // Button styling
+    $('button').css({
+        'background-color': '#007bff',
+        'color': '#fff',
+        'border': 'none',
+        'border-radius': '5px',
+        'padding': '10px',
+        'margin': '10px',
+        'cursor': 'pointer'
+    });
+
+      
 });
+
 
 
